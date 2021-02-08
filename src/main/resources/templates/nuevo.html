@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<title>LIBRERIA ILIANA| AGREGAR</title>
+<meta charset="utf-8">
+<link rel="stylesheet" href="css/reset.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/layout.css" type="text/css" media="all">
+<link rel="stylesheet" href="css/style.css" type="text/css" media="all">
+<script type="text/javascript" src="js/jquery-1.6.js"></script>
+<script type="text/javascript" src="js/cufon-yui.js"></script>
+<script type="text/javascript" src="js/cufon-replace.js"></script>
+<script type="text/javascript" src="js/Vegur_700.font.js"></script>
+<script type="text/javascript" src="js/Vegur_400.font.js"></script>
+<script type="text/javascript" src="js/Vegur_300.font.js"></script>
+<script type="text/javascript" src="js/atooltip.jquery.js"></script>
+<script type="text/javascript" src="js/script.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1" crossorigin="anonymous">
+<!-- JavaScript Bundle with Popper -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js" integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW" crossorigin="anonymous"></script>
+<!--[if lt IE 9]>
+<script type="text/javascript" src="js/html5.js"></script>
+<style type="text/css">.box1 figure{behavior:url("js/PIE.htc");}</style>
+<![endif]-->
+</head>
+<body id="page3">
+<div class="body1">
+  <div class="main">
+    <!-- header -->
+    <header>
+      <div class="wrapper">
+        <h1><a href="/" id="logo">LIBRARY ILIANA</a></h1>
+        <nav>
+          <ul id="menu">
+            <li><a href="/">INICIO</a></li>
+            <li><a href="/libros">VER LIBROS</a></li>
+            <li id="menu_active"><a href="/nuevo">AGREGAR LIBROS</a></li>
+          </ul>
+        </nav>
+      </div>
+    </header>
+    <!-- / header -->
+    <!-- content -->
+
+    <!-- / content -->
+    <!-- footer -->
+    <footer>
+      <div class="wrapper"> <a href="/" id="footer_logo"><span>LIBRERIA </span>ILIANA</a>
+      </div>
+    </footer>
+    <form id="id_formulario" action="http://localhost:8080/api/libreria/postlibros" method="post">
+    <div class="form-group">
+    <label for="exampleInputAnio1">Año</label>
+    <input type="text" name="anio_impresion"  class="form-control" id="id_anio_impresion" aria-describedby="anioHelp" placeholder="Ingresa el año de impresión del libro.">
+    <small id="anioHelp" class="form-text text-muted"></small>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputAutor1">Autor</label>
+    <input type="text" name="autor"  class="form-control" id="id_autor" aria-describedby="autorHelp" placeholder="Ingresa el nombre del autor."required>
+    <small id="autorHelp" class="form-text text-muted"></small>
+  </div>
+
+  <div class="form-group">
+    <label for="exampleInputDescripcion1">Descripcion</label>
+    <input type="text" name="descripcion" class="form-control" id="id_descripcion" aria-describedby="descripcionHelp" placeholder="Ingresa una descripcion del libro.">
+    <small id="descripcionHelp" class="form-text text-muted"></small>
+  </div>
+  
+    <div class="form-group">
+    <label for="exampleInputLibro1">Nombre del libro</label>
+    <input type="text" name="nombre" class="form-control" id="id_nombre" aria-describedby="libroHelp" placeholder="Ingresa el nombre del libro por favor." required>
+    <small id="libroHelp" class="form-text text-muted"></small>
+  </div>
+  
+    <div class="form-group">
+    <label for="exampleInputNumero1">Numero de paginas </label>
+    <input type="text" name="numero_paginas" class="form-control" id="id_numero_paginas" aria-describedby="paginaHelp" placeholder="coloca el numero total de paginas del libro">
+    <small id="paginaHelp" class="form-text text-muted"></small>
+  </div>
+  
+  <div class="form-group">
+    <label for="exampleInputTema1">Tema</label>
+    <input type="text" name="tema"  class="form-control" id="id_tema" aria-describedby="temaHelp" placeholder=" Ingresa el Tema del libro" required>
+  </div>
+  <br>
+  <button type="submit" class="btn btn-primary">Agregar</button>
+ 
+    <!-- / footer -->
+  </div>
+</div>
+</form>
+<script type="text/javascript">
+   
+        
+            
+       $('#id_formulario').submit(function(e){
+            event.preventDefault();
+                $.ajax({
+                    type: 'POST',
+                    url: $(this).attr('action'),
+                    data: $(this).serialize(),
+                    success: function(data) {
+                      Swal.fire(
+						  'Libro Registrado!',
+						  'Da click en el boton ok!',
+						  'success'
+						);
+						$('#id_anio_impresion').val("");
+                        $('#id_autor').val("");
+                        $('#id_descripcion').val("");
+                        $('#id_nombre').val("");
+                        $('#id_numero_paginas').val("");
+                        $('#id_tema').val("");
+                    },error: function(error){
+                       alert("error");
+                    }
+                });
+            }); 
+            
+            
+       
+    
+</script>
+</body>
+</html>
